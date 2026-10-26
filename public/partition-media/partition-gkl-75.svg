@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
+<rect width="600" height="400" fill="#EDEDEF"/>
+<defs>
+<pattern id="w" width="16" height="16" patternUnits="userSpaceOnUse">
+<path d="M0 8 Q4 0 8 8 T16 8" fill="none" stroke="#c9a227" stroke-width="2"/>
+</pattern>
+</defs>
+<rect x="40" y="90" width="460" height="20" fill="#f4efe4" stroke="#5a6b6e" stroke-width="1.5"/>
+<rect x="40" y="110" width="460" height="20" fill="#f4efe4" stroke="#5a6b6e" stroke-width="1.5"/>
+<rect x="40" y="130" width="460" height="120" fill="#ffffff" stroke="#5a6b6e" stroke-width="1.5"/>
+<rect x="40" y="150" width="460" height="80" fill="#f6e7a8"/>
+<rect x="40" y="150" width="460" height="80" fill="url(#w)"/>
+<path d="M70 130 h40 v120 h-40 M90 130 v120" fill="none" stroke="#6f7f86" stroke-width="4"/>
+<path d="M270 130 h40 v120 h-40 M290 130 v120" fill="none" stroke="#6f7f86" stroke-width="4"/>
+<path d="M450 130 h40 v120 h-40 M470 130 v120" fill="none" stroke="#6f7f86" stroke-width="4"/>
+<rect x="40" y="250" width="460" height="20" fill="#f4efe4" stroke="#5a6b6e" stroke-width="1.5"/>
+<rect x="40" y="270" width="460" height="20" fill="#f4efe4" stroke="#5a6b6e" stroke-width="1.5"/>
+<g stroke="#141416" stroke-width="2">
+<line x1="530" y1="90" x2="530" y2="290"/>
+<line x1="522" y1="90" x2="538" y2="90"/>
+<line x1="522" y1="290" x2="538" y2="290"/>
+</g>
+<text x="542" y="196" font-family="Arial,sans-serif" font-size="18" fill="#141416" transform="rotate(-90 548 190)" text-anchor="middle">125 мм</text>
+<text x="40" y="380" font-family="Arial,sans-serif" font-size="16" fill="#3d4f52">ГКЛ 2×12,5 + ПС 75 + минвата 50 + ГКЛ 2×12,5</text>
+</svg>

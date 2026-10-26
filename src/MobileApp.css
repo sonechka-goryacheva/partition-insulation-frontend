@@ -1,0 +1,57 @@
+/* Оформление из ЛР-2 (стилистика сайта-образца ТехноСонус):
+   акцентный цвет #EE4623, тёмные подложки #141416 и #1B1B1C,
+   прямые углы без скруглений, без теней, переходы 0.3s,
+   шрифт Montserrat из пакета @fontsource/montserrat (подключён в main.tsx) */
+
+:root {
+  --partitionAccent: #EE4623;
+  --partitionBackground: #FFFFFF;
+  --partitionDark: #141416;
+  --partitionDarkAlt: #1B1B1C;
+  --partitionBorder: #2A2A2C;
+  --partitionCardBorder: #E5E5E7;
+  --partitionTextMuted: rgba(0, 0, 0, 0.6);
+  --partitionTextOnDark: rgba(255, 255, 255, 0.5);
+  --partitionRadius: 0;
+  --partitionTransition: 0.3s;
+  --partitionScreenWidth: 390px;
+  --partitionTabbarHeight: 72px;
+  --partitionHeaderHeight: 56px;
+}
+
+body {
+  margin: 0;
+  background: #F5F5F7;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--partitionDark);
+}
+
+/* Оболочка под вертикальный экран телефона: колонка 390px по центру окна */
+.partitionScreen {
+  position: relative;
+  width: 100%;
+  max-width: var(--partitionScreenWidth);
+  min-height: 100vh;
+  margin: 0 auto;
+  background: var(--partitionBackground);
+  padding-bottom: var(--partitionTabbarHeight);
+}
+
+/* Тёмная шапка страницы */
+.partitionHeader {
+  background: var(--partitionDarkAlt);
+  padding: 16px 20px;
+}
+
+.partitionHeaderBlank {
+  height: var(--partitionHeaderHeight);
+  padding: 0;
+}
+
+.partitionHeaderTitle {
+  margin: 0;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+  color: #FFFFFF;
+}

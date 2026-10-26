@@ -1,0 +1,59 @@
+.partitionFilterForm {
+  margin-top: 16px;
+}
+
+.partitionFilterRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.partitionFilterLabel {
+  font-size: 11px;
+  color: var(--partitionTextOnDark);
+}
+
+.partitionFilterRowSecond {
+  margin-top: 14px;
+}
+
+.partitionFilterBounds {
+  margin: 10px 0 14px;
+  font-size: 11px;
+  color: var(--partitionTextOnDark);
+}
+
+/* Слайдер Form.Range с bsPrefix="partitionSlider": стили Bootstrap .form-range не применяются,
+   оформление как в ЛР-2 — нативный ползунок, пройденная часть дорожки акцентного цвета */
+.partitionSlider {
+  display: block;
+  width: 100%;
+  margin: 8px 0 0;
+  accent-color: var(--partitionAccent);
+  color-scheme: dark;
+  height: 18px;
+  cursor: pointer;
+}
+
+/* Кнопка Button из React-Bootstrap в стиле ЛР-2: акцентная, без скруглений */
+.partitionPrimaryButton {
+  --bs-btn-bg: var(--partitionAccent);
+  --bs-btn-border-color: var(--partitionAccent);
+  --bs-btn-hover-bg: var(--partitionAccent);
+  --bs-btn-hover-border-color: var(--partitionAccent);
+  --bs-btn-active-bg: var(--partitionAccent);
+  --bs-btn-active-border-color: var(--partitionAccent);
+  --bs-btn-focus-box-shadow: none;
+  --bs-btn-border-radius: 0;
+  display: block;
+  width: 100%;
+  padding: 13px;
+  font-size: 15px;
+  line-height: 18px;
+  font-weight: 600;
+  transition: opacity var(--partitionTransition);
+}
+
+.partitionPrimaryButton:hover {
+  opacity: 0.85;
+}

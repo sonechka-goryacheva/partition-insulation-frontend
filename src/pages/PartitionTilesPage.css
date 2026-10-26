@@ -1,0 +1,18 @@
+.partitionCatalog {
+  padding: 20px;
+}
+
+/* Плитка: карточки в две колонки одинаковой высоты */
+.partitionGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
+  gap: 12px;
+}
+
+.partitionEmptyMessage {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: 14px;
+  color: var(--partitionTextMuted);
+}

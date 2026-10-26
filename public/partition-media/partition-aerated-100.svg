@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
+<rect width="600" height="400" fill="#EDEDEF"/>
+<defs>
+<pattern id="d" width="14" height="14" patternUnits="userSpaceOnUse">
+<circle cx="4" cy="4" r="1.6" fill="#a9b2b5"/>
+<circle cx="11" cy="10" r="1.2" fill="#a9b2b5"/>
+</pattern>
+</defs>
+<rect x="40" y="94" width="460" height="16" fill="#efe6d2" stroke="#5a6b6e" stroke-width="1.5"/>
+<rect x="40" y="110" width="460" height="160" fill="#dfe3e4" stroke="#5a6b6e" stroke-width="1.5"/>
+<rect x="40" y="110" width="460" height="160" fill="url(#d)"/>
+<line x1="190" y1="110" x2="190" y2="270" stroke="#7d8a8d" stroke-width="2"/>
+<line x1="340" y1="110" x2="340" y2="270" stroke="#7d8a8d" stroke-width="2"/>
+<rect x="40" y="270" width="460" height="16" fill="#efe6d2" stroke="#5a6b6e" stroke-width="1.5"/>
+<g stroke="#141416" stroke-width="2">
+<line x1="530" y1="94" x2="530" y2="286"/>
+<line x1="522" y1="94" x2="538" y2="94"/>
+<line x1="522" y1="286" x2="538" y2="286"/>
+</g>
+<text x="542" y="196" font-family="Arial,sans-serif" font-size="18" fill="#141416" transform="rotate(-90 548 190)" text-anchor="middle">120 мм</text>
+<text x="40" y="380" font-family="Arial,sans-serif" font-size="16" fill="#3d4f52">Штукатурка 10 + газобетон D500 100 + штукатурка 10</text>
+</svg>

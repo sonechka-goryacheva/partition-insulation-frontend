@@ -1,0 +1,81 @@
+/* Card из React-Bootstrap в стиле ЛР-2: прямые углы, тонкая рамка, без теней */
+.partitionCard {
+  --bs-card-border-radius: 0;
+  --bs-card-inner-border-radius: 0;
+  --bs-card-border-color: var(--partitionCardBorder);
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  cursor: pointer;
+  border-width: 0.5px;
+}
+
+.partitionCardImageBox {
+  height: 96px;
+  overflow: hidden;
+  background: #EDEDEF;
+}
+
+.partitionCardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--partitionTransition);
+}
+
+.partitionCard:hover .partitionCardImage {
+  transform: scale(1.05);
+}
+
+/* Ромб-маркер при наведении */
+.partitionCardMarker {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 10px;
+  height: 10px;
+  background: var(--partitionAccent);
+  transform: rotate(45deg);
+  opacity: 0;
+  transition: opacity var(--partitionTransition);
+}
+
+.partitionCard:hover .partitionCardMarker {
+  opacity: 1;
+}
+
+.partitionCardBody {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.partitionCardName {
+  margin-bottom: 4px;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
+  color: var(--partitionDark);
+}
+
+.partitionCardSpecs {
+  flex: 1;
+  margin-bottom: 6px;
+  font-size: 11px;
+  line-height: 14px;
+  color: var(--partitionTextMuted);
+}
+
+.partitionCardLikes {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--partitionDark);
+}
+
+.partitionCardHeart {
+  width: 14px;
+  height: 14px;
+  color: var(--partitionAccent);
+}

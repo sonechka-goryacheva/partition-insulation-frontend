@@ -1,0 +1,44 @@
+.partitionAttributes {
+  margin-top: 12px;
+}
+
+.partitionAttributesTitle {
+  margin-bottom: 4px;
+  font-size: 11px;
+  line-height: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--partitionAccent);
+}
+
+/* ListGroup из React-Bootstrap на тёмной плашке ленты */
+.partitionAttributesList {
+  --bs-list-group-bg: transparent;
+  --bs-list-group-color: #FFFFFF;
+  --bs-list-group-border-color: var(--partitionBorder);
+  --bs-list-group-item-padding-x: 0;
+  --bs-list-group-item-padding-y: 4px;
+}
+
+.partitionAttributesItem {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.partitionAttributesName {
+  color: var(--partitionTextOnDark);
+}
+
+.partitionAttributesValue {
+  text-align: right;
+  font-weight: 600;
+}
+
+.partitionAttributesEmpty {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--partitionTextOnDark);
+}

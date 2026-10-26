@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
+<rect width="600" height="400" fill="#EDEDEF"/>
+<rect x="40" y="70" width="460" height="24" fill="#efe6d2" stroke="#5a6b6e" stroke-width="1.5"/>
+<rect x="40" y="94" width="460" height="192" fill="#e2e0dc" stroke="#5a6b6e" stroke-width="1.5"/>
+<rect x="43" y="97" width="114" height="186" fill="#b5533c" rx="2"/>
+<rect x="163" y="97" width="114" height="186" fill="#b5533c" rx="2"/>
+<rect x="283" y="97" width="114" height="186" fill="#b5533c" rx="2"/>
+<rect x="403" y="97" width="94" height="186" fill="#b5533c" rx="2"/>
+<rect x="40" y="286" width="460" height="24" fill="#efe6d2" stroke="#5a6b6e" stroke-width="1.5"/>
+<g stroke="#141416" stroke-width="2">
+<line x1="530" y1="70" x2="530" y2="310"/>
+<line x1="522" y1="70" x2="538" y2="70"/>
+<line x1="522" y1="310" x2="538" y2="310"/>
+</g>
+<text x="542" y="196" font-family="Arial,sans-serif" font-size="18" fill="#141416" transform="rotate(-90 548 190)" text-anchor="middle">150 мм</text>
+<text x="40" y="380" font-family="Arial,sans-serif" font-size="16" fill="#3d4f52">Штукатурка 15 + кирпич 120 + штукатурка 15</text>
+</svg>

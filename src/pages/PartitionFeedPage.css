@@ -1,0 +1,177 @@
+/* Лента в оформлении ЛР-2: медиа на весь экран между шапкой и нижним меню */
+.partitionFeed {
+  position: relative;
+  height: calc(100vh - var(--partitionHeaderHeight) - var(--partitionTabbarHeight));
+  overflow: hidden;
+  background: #EDEDEF;
+}
+
+.partitionFeedVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #EDEDEF;
+}
+
+/* Колонка ромбов и плашка прижаты к низу: колонка всегда стоит над плашкой */
+.partitionFeedBottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.partitionFeedOverlay {
+  max-height: 60vh;
+  overflow-y: auto;
+  padding: 16px 20px 20px;
+  background: var(--partitionDark);
+  opacity: 0.92;
+}
+
+.partitionFeedName {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 26px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+/* Описание: две строки, «Ещё» разворачивает полностью */
+.partitionDescriptionText {
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--partitionTextOnDark);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.partitionDescriptionTextOpen {
+  -webkit-line-clamp: initial;
+  overflow: visible;
+}
+
+.partitionDescriptionMore {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 0;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--partitionAccent);
+  cursor: pointer;
+}
+
+/* Колонка ромбов справа */
+.partitionActionColumn {
+  align-self: flex-end;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Повёрнутый на 45 градусов квадрат занимает по диагонали больше своей стороны,
+   поэтому каждый ромб лежит в обёртке, которая и задаёт габариты в потоке */
+.partitionDiamondBox {
+  width: 78px;
+  height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.partitionDiamond {
+  width: 55px;
+  height: 55px;
+  padding: 0;
+  border: none;
+  transform: rotate(45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--partitionTransition);
+}
+
+.partitionDiamondDark {
+  background: var(--partitionDarkAlt);
+}
+
+.partitionDiamondBlack {
+  background: var(--partitionDark);
+}
+
+.partitionDiamondAccent {
+  background: var(--partitionAccent);
+  cursor: pointer;
+}
+
+.partitionDiamondAccent:active {
+  transform: rotate(45deg) translate(3px, 3px);
+}
+
+.partitionDiamondInner {
+  transform: rotate(-45deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.partitionHeartIcon {
+  width: 21px;
+  height: 21px;
+  color: var(--partitionAccent);
+}
+
+.partitionNextIcon {
+  width: 24px;
+  height: 24px;
+  color: #FFFFFF;
+}
+
+.partitionLikesCount {
+  font-size: 11px;
+  line-height: 13px;
+  font-weight: 600;
+  color: #FFFFFF;
+  white-space: nowrap;
+}
+
+.partitionDiamondValue {
+  transform: rotate(-45deg);
+  text-align: center;
+}
+
+.partitionDiamondCaption {
+  display: block;
+  font-size: 8px;
+  line-height: 10px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.partitionDiamondNumber {
+  display: block;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.partitionFeedNotFound {
+  padding: 20px;
+  font-size: 14px;
+  color: var(--partitionTextMuted);
+}
