@@ -1,35 +1,54 @@
 import "./PartitionTilesPage.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import type { FC } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { PartitionRwFilter } from "../components/PartitionRwFilter";
 import { PartitionCard } from "../components/PartitionCard";
 import { ROUTES } from "../Routes";
-import type { PartitionOutletContext } from "../AppLayout";
+import type { AppDispatch } from "../store";
 import {
-  PARTITION_RW_MAX,
-  PARTITION_RW_MIN,
-  PARTITION_SYSTEMS_MOCK,
-  getPartitionSystemsMock,
-} from "../modules/partitionMock";
+  deletePartitionSystem,
+  getPartitionSystemsList,
+  setPartitionRwFromAction,
+  setPartitionRwToAction,
+  usePartitionError,
+  usePartitionLoading,
+  usePartitionRwFrom,
+  usePartitionRwTo,
+  usePartitionSystems,
+} from "../slices/partitionSystemsSlice";
+import { usePartitionIsAuthenticated } from "../slices/partitionUserSlice";
+import type { PartitionSystem } from "../modules/partitionTypes";
+import { PARTITION_RW_MAX, PARTITION_RW_MIN } from "../modules/partitionMock";
 
-// Страница «Плитка конструкций»: тёмная шапка с фильтром по Rw и карточки в две колонки
+// Страница «Плитка конструкций»: тёмная шапка с фильтром по Rw и карточки в две колонки.
+// Список загружается из веб-сервиса через thunk getPartitionSystemsList,
+// значения фильтра хранятся в Redux и сохраняются при переходе в ленту и обратно
 export const PartitionTilesPage: FC = () => {
-  const [rwFrom, setRwFrom] = useState(PARTITION_RW_MIN);
-  const [rwTo, setRwTo] = useState(PARTITION_RW_MAX);
-  const [partitionSystemsList, setPartitionSystemsList] = useState(PARTITION_SYSTEMS_MOCK);
-  const { setPartitionSystems } = useOutletContext<PartitionOutletContext>();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  const rwFrom = usePartitionRwFrom();
+  const rwTo = usePartitionRwTo();
+  const partitionSystems = usePartitionSystems();
+  const loading = usePartitionLoading();
+  const error = usePartitionError();
+  const isAuthenticated = usePartitionIsAuthenticated();
 
-  // При открытии плитки общий список для ленты — вся mock-коллекция
+  // при открытии страницы — запрос списка с текущим фильтром
   useEffect(() => {
-    setPartitionSystems(PARTITION_SYSTEMS_MOCK);
-  }, [setPartitionSystems]);
+    dispatch(getPartitionSystemsList()); // отправляем thunk
+  }, [dispatch]);
 
   const handleFilter = () => {
-    const filtered = getPartitionSystemsMock(rwFrom, rwTo);
-    setPartitionSystemsList(filtered);
-    setPartitionSystems(filtered);
+    dispatch(getPartitionSystemsList());
+  };
+
+  // «Удалить» у своей конструкции: подтверждение, затем thunk deletePartitionSystem
+  const handleDelete = (partitionSystem: PartitionSystem) => {
+    if (window.confirm(`Удалить конструкцию «${partitionSystem.partitionName}»?`)) {
+      dispatch(deletePartitionSystem(partitionSystem.partitionSystemId));
+    }
   };
 
   const handleCardClick = (partitionSystemId: number) => {
@@ -45,18 +64,20 @@ export const PartitionTilesPage: FC = () => {
           rwTo={rwTo}
           rwMin={PARTITION_RW_MIN}
           rwMax={PARTITION_RW_MAX}
-          setRwFrom={setRwFrom}
-          setRwTo={setRwTo}
+          setRwFrom={(value) => dispatch(setPartitionRwFromAction(value))}
+          setRwTo={(value) => dispatch(setPartitionRwToAction(value))}
           onSubmit={handleFilter}
+          loading={loading}
         />
       </header>
 
       <section className="partitionCatalog">
         <div className="partitionGrid">
-          {!partitionSystemsList.length && (
+          {error && <p className="partitionEmptyMessage">{error}</p>}
+          {!loading && !error && !partitionSystems.length && (
             <p className="partitionEmptyMessage">Конструкций с таким индексом Rw не найдено.</p>
           )}
-          {partitionSystemsList.map((partitionSystem) => (
+          {partitionSystems.map((partitionSystem) => (
             <PartitionCard
               key={partitionSystem.partitionSystemId}
               partitionName={partitionSystem.partitionName}
@@ -64,7 +85,15 @@ export const PartitionTilesPage: FC = () => {
               soundIndexRw={partitionSystem.soundIndexRw}
               partitionPhotoUrl={partitionSystem.partitionPhotoUrl}
               partitionLikesCount={partitionSystem.partitionLikesCount}
+              partitionIsLiked={isAuthenticated && partitionSystem.partitionIsLiked === 1}
               onClick={() => handleCardClick(partitionSystem.partitionSystemId)}
+              // признак для удаления: своя конструкция (partitionIsMine = 1) и выполнен вход
+              onDelete={
+                isAuthenticated && partitionSystem.partitionIsMine === 1
+                  ? () => handleDelete(partitionSystem)
+                  : undefined
+              }
+              deleteDisabled={loading}
             />
           ))}
         </div>

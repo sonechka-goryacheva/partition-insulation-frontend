@@ -1,0 +1,44 @@
+/* Страница входа в оформлении приложения: тёмная шапка, белая форма */
+.partitionLogin {
+  padding: 24px 20px calc(var(--partitionTabbarHeight) + 24px);
+}
+
+.partitionLoginText {
+  margin: 0 0 20px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #6B6B70;
+}
+
+.partitionLoginLabel {
+  margin-bottom: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--partitionDark);
+}
+
+.partitionLoginInput {
+  --bs-border-radius: 0;
+  margin-bottom: 16px;
+  padding: 12px 14px;
+  font-size: 15px;
+  border-color: #D6D6DA;
+}
+
+.partitionLoginInput:focus {
+  border-color: var(--partitionAccent);
+  box-shadow: none;
+}
+
+.partitionLoginAlert {
+  --bs-alert-border-radius: 0;
+  font-size: 14px;
+}
+
+.partitionLoginSpinner {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  vertical-align: -3px;
+}

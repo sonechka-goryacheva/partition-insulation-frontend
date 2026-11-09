@@ -14,3 +14,6 @@ export const ROUTE_LABELS: { [key in RouteKeyType]: string } = {
   PARTITION_TILES: "Плитка",
   PARTITION_LOGIN: "Войти",
 };
+
+// Подпись пункта меню вместо «Войти» после авторизации
+export const PARTITION_LOGOUT_LABEL = "Выход";

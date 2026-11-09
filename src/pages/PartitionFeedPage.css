@@ -25,12 +25,21 @@
   flex-direction: column;
 }
 
+/* Высота плашки одинаковая у всех конструкций, поэтому колонка ромбов
+   при открытии ленты всегда на одном уровне; лишнее прокручивается внутри плашки */
 .partitionFeedOverlay {
+  height: 250px;
   max-height: 60vh;
   overflow-y: auto;
   padding: 16px 20px 20px;
   background: var(--partitionDark);
   opacity: 0.92;
+}
+
+/* «Ещё»: плашка растёт под полное описание (не выше 60% экрана) */
+.partitionFeedOverlayOpen {
+  height: auto;
+  min-height: 250px;
 }
 
 .partitionFeedName {
@@ -115,6 +124,23 @@
 .partitionDiamondAccent {
   background: var(--partitionAccent);
   cursor: pointer;
+}
+
+/* Ромб с лайком — кнопка: нажимается только после входа */
+.partitionDiamondLike:not(:disabled) {
+  cursor: pointer;
+}
+
+.partitionDiamondLike:not(:disabled):active {
+  transform: rotate(45deg) translate(3px, 3px);
+}
+
+/* Ошибка запроса (например, лайка) над названием конструкции */
+.partitionFeedError {
+  margin: 0 0 8px;
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--partitionAccent);
 }
 
 .partitionDiamondAccent:active {

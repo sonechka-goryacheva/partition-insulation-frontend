@@ -81,11 +81,10 @@ export const PARTITION_SYSTEMS_MOCK: PartitionSystem[] = [
   },
 ];
 
-// Границы слайдеров фильтра, как в ЛР-2: от 0 до наибольшего Rw в коллекции
+// Границы слайдеров фильтра — как ограничение веб-сервиса (soundIndexRw от 0 до 100 дБ),
+// чтобы фильтр по умолчанию не скрывал конструкции из БД с Rw выше, чем в mock
 export const PARTITION_RW_MIN = 0;
-export const PARTITION_RW_MAX = Math.max(
-  ...PARTITION_SYSTEMS_MOCK.map((partitionSystem) => partitionSystem.soundIndexRw ?? 0),
-);
+export const PARTITION_RW_MAX = 100;
 
 // Фильтр mock-коллекции по индексу звукоизоляции Rw — как GET /api/partitions?rwFrom&rwTo:
 // конструкции без Rw в результат не попадают
@@ -97,6 +96,16 @@ export const getPartitionSystemsMock = (rwFrom: number, rwTo: number): Partition
       partitionSystem.soundIndexRw <= rwTo,
   );
 
-// Конструкция по id — как GET /api/partitions/feed/{id}; undefined — нет в коллекции
-export const getPartitionSystemByIdMock = (partitionSystemId: number): PartitionSystem | undefined =>
-  PARTITION_SYSTEMS_MOCK.find((partitionSystem) => partitionSystem.partitionSystemId === partitionSystemId);
+// Лента без бэкенда — как GET /api/partitions/feed и /feed/{id}?next=true:
+// без id — первая конструкция, next — следующая после указанной (после последней снова первая)
+export const getPartitionFeedItemMock = (
+  partitionSystemId?: number,
+  next?: boolean,
+): PartitionSystem | null => {
+  if (partitionSystemId === undefined) return PARTITION_SYSTEMS_MOCK[0] ?? null;
+  const index = PARTITION_SYSTEMS_MOCK.findIndex(
+    (partitionSystem) => partitionSystem.partitionSystemId === partitionSystemId,
+  );
+  if (index === -1) return null;
+  return next ? PARTITION_SYSTEMS_MOCK[(index + 1) % PARTITION_SYSTEMS_MOCK.length] : PARTITION_SYSTEMS_MOCK[index];
+};

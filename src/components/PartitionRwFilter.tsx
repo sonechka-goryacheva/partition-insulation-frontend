@@ -11,6 +11,7 @@ interface Props {
   setRwTo: (value: number) => void;
   onSubmit: () => void;
   buttonTitle?: string;
+  loading?: boolean; // идёт запрос — кнопка недоступна
 }
 
 // Фильтр плитки по индексу звукоизоляции Rw (слайдеры «не ниже» и «не выше», как в ЛР-2)
@@ -23,6 +24,7 @@ export const PartitionRwFilter: FC<Props> = ({
   setRwTo,
   onSubmit,
   buttonTitle = "Поиск",
+  loading = false,
 }) => (
   <Form
     className="partitionFilterForm"
@@ -62,7 +64,7 @@ export const PartitionRwFilter: FC<Props> = ({
       <span>{rwMax}</span>
     </div>
 
-    <Button type="submit" className="partitionPrimaryButton">
+    <Button type="submit" className="partitionPrimaryButton" disabled={loading}>
       {buttonTitle}
     </Button>
   </Form>
