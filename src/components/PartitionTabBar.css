@@ -1,51 +1,141 @@
-.partitionTabbar {
+/* Меню сверху на всю ширину контента (до 1200px) */
+.partitionNav {
   position: fixed;
-  bottom: 0;
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
   max-width: var(--partitionScreenWidth);
-  height: var(--partitionTabbarHeight);
-  display: flex;
-  background: var(--partitionDarkAlt);
-  border-top: 0.5px solid var(--partitionBorder);
+  height: var(--partitionNavHeight);
   z-index: 100;
+  background: var(--partitionDarkAlt);
+  border-bottom: 0.5px solid var(--partitionBorder);
 }
 
-.partitionTabbarItem {
-  flex: 1;
+.partitionNavBar {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 4px;
+  height: 100%;
+  padding: 0 20px;
+}
+
+/* Шире 545px: пункты в одну строку */
+.partitionNavLinks {
+  display: flex;
+  align-items: center;
+  gap: 8px 32px;
+  width: 100%;
+}
+
+.partitionNavItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
   padding: 0;
   border: none;
   background: none;
   font-family: inherit;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 500;
   color: var(--partitionTextOnDark);
   cursor: pointer;
   transition: color var(--partitionTransition);
 }
 
-.partitionTabbarItem:hover:not(:disabled),
-.partitionTabbarItemActive {
+.partitionNavItem:hover:not(:disabled),
+.partitionNavItemActive {
   color: var(--partitionAccent);
 }
 
-/* Недоступные в ЛР-5 пункты: «Добавить» и «Войти» */
-.partitionTabbarItem:disabled {
+.partitionNavItem:disabled {
   opacity: 0.35;
   cursor: not-allowed;
 }
 
-.partitionTabbarIcon {
-  width: 24px;
-  height: 24px;
+.partitionNavIcon {
+  width: 22px;
+  height: 22px;
 }
 
-.partitionTabbarLabel {
-  font-size: 11px;
-  line-height: 14px;
-  font-weight: 500;
+/* Бургер скрыт, пока ширина больше 545px */
+.partitionNavBurger {
+  display: none;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.partitionNavBurgerTarget {
+  height: 2px;
+  width: 100%;
+  background-color: #FFFFFF;
+  position: relative;
+  transition: transform 0.2s linear;
+}
+
+.partitionNavBurger.active .partitionNavBurgerTarget {
+  transform: rotate(45deg);
+}
+
+.partitionNavBurgerTarget::after,
+.partitionNavBurgerTarget::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background-color: #FFFFFF;
+}
+
+.partitionNavBurgerTarget::after {
+  top: -7px;
+}
+
+.partitionNavBurgerTarget::before {
+  bottom: -7px;
+}
+
+.partitionNavBurger.active .partitionNavBurgerTarget::after {
+  display: none;
+}
+
+.partitionNavBurger.active .partitionNavBurgerTarget::before {
+  top: 0;
+  transform: rotate(90deg);
+}
+
+.partitionNavMenu {
+  position: absolute;
+  top: var(--partitionNavHeight);
+  left: 0;
+  display: none;
+  flex-direction: column;
+  gap: 15px;
+  background: var(--partitionDarkAlt);
+  padding: 20px;
+  min-width: 180px;
+  border: 0.5px solid var(--partitionBorder);
+}
+
+.partitionNavBurger.active .partitionNavMenu {
+  display: flex;
+}
+
+/* До 545px строка ссылок скрыта, вместо неё бургер */
+@media (max-width: 545px) {
+  .partitionNavBar {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+  }
+
+  .partitionNavLinks {
+    display: none;
+  }
+
+  .partitionNavBurger {
+    display: flex;
+  }
 }

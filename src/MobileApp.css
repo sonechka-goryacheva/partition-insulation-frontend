@@ -15,8 +15,9 @@
   --partitionTextOnDark: rgba(255, 255, 255, 0.5);
   --partitionRadius: 0;
   --partitionTransition: 0.3s;
-  --partitionScreenWidth: 390px;
-  --partitionTabbarHeight: 72px;
+  /* Контент на широком экране не шире 1200px */
+  --partitionScreenWidth: 1200px;
+  --partitionNavHeight: 64px;
   --partitionHeaderHeight: 56px;
 }
 
@@ -27,7 +28,7 @@ body {
   color: var(--partitionDark);
 }
 
-/* Оболочка под вертикальный экран телефона: колонка 390px по центру окна */
+/* Оболочка на ширину окна, но не шире 1200px. Сверху место под фиксированное меню */
 .partitionScreen {
   position: relative;
   width: 100%;
@@ -35,7 +36,7 @@ body {
   min-height: 100vh;
   margin: 0 auto;
   background: var(--partitionBackground);
-  padding-bottom: var(--partitionTabbarHeight);
+  padding-top: var(--partitionNavHeight);
 }
 
 /* Тёмная шапка страницы */

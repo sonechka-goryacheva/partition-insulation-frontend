@@ -10,10 +10,31 @@
   border-width: 0.5px;
 }
 
+/* От 1200px высота фото 160px */
 .partitionCardImageBox {
-  height: 96px;
+  height: 160px;
   overflow: hidden;
   background: #EDEDEF;
+}
+
+/* До 768px высота фото 120px */
+@media (max-width: 768px) {
+  .partitionCardImageBox {
+    height: 120px;
+  }
+}
+
+/* До 460px фото сверху на всю ширину карточки, высота 200px, текст под ним */
+@media (max-width: 460px) {
+  .partitionCard {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .partitionCardImageBox {
+    width: 100%;
+    height: 200px;
+  }
 }
 
 .partitionCardImage {

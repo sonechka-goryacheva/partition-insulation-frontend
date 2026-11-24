@@ -1,7 +1,7 @@
 /* Лента в оформлении ЛР-2: медиа на весь экран между шапкой и нижним меню */
 .partitionFeed {
   position: relative;
-  height: calc(100vh - var(--partitionHeaderHeight) - var(--partitionTabbarHeight));
+  height: calc(100vh - var(--partitionNavHeight) - var(--partitionHeaderHeight));
   overflow: hidden;
   background: #EDEDEF;
 }
@@ -200,4 +200,22 @@
   padding: 20px;
   font-size: 14px;
   color: var(--partitionTextMuted);
+}
+
+/* До 768px плашка не выше 50vh, ромб 44px вместо 55px */
+@media (max-width: 768px) {
+  .partitionFeedOverlay,
+  .partitionFeedOverlayOpen {
+    max-height: 50vh;
+  }
+
+  .partitionDiamondBox {
+    width: 62px;
+    height: 62px;
+  }
+
+  .partitionDiamond {
+    width: 44px;
+    height: 44px;
+  }
 }

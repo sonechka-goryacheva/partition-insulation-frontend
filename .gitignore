@@ -12,6 +12,12 @@ dist
 dist-ssr
 *.local
 
+# Локальные сертификаты HTTPS (mkcert). Приватные ключи в репозиторий не попадают
+ca.key
+ca.crt
+cert.key
+cert.crt
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

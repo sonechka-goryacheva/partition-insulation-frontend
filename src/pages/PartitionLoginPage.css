@@ -1,6 +1,17 @@
-/* Страница входа в оформлении приложения: тёмная шапка, белая форма */
+/* Форма по центру, не шире 480px */
 .partitionLogin {
-  padding: 24px 20px calc(var(--partitionTabbarHeight) + 24px);
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 24px 20px;
+}
+
+/* До 460px форма на всю ширину, боковые отступы 16px */
+@media (max-width: 460px) {
+  .partitionLogin {
+    max-width: none;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 }
 
 .partitionLoginText {

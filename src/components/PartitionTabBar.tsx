@@ -1,6 +1,6 @@
 import "./PartitionTabBar.css";
 import { useState } from "react";
-import type { FC } from "react";
+import type { FC, ReactNode } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { PARTITION_LOGOUT_LABEL, ROUTES, ROUTE_LABELS } from "../Routes";
@@ -13,13 +13,14 @@ import {
 } from "../slices/partitionSystemsSlice";
 import { resetPartitionUserAction, usePartitionIsAuthenticated } from "../slices/partitionUserSlice";
 
-// Нижнее меню из 4 пунктов (иконки из ЛР-2).
+// Меню: шире 545px пункты в строку, уже — бургер.
 // Гость: «Лента», «Плитка», «Войти»; после входа доступна «Добавить», последний пункт — «Выход»
 export const PartitionTabBar: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const partitionSystems = usePartitionSystems(); // текущий список из Redux
   const isAuthenticated = usePartitionIsAuthenticated();
   const [logoutLoading, setLogoutLoading] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -59,67 +60,89 @@ export const PartitionTabBar: FC = () => {
     }
   };
 
-  return (
-    <nav className="partitionTabbar">
+  const renderItems = (): ReactNode => (
+    <>
       <button
         type="button"
-        className={`partitionTabbarItem ${isFeed ? "partitionTabbarItemActive" : ""}`}
+        className={`partitionNavItem ${isFeed ? "partitionNavItemActive" : ""}`}
         onClick={goToFeed}
       >
-        <svg className="partitionTabbarIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+        <svg className="partitionNavIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
           <rect x="3" y="4" width="18" height="16" rx="2" />
           <line x1="3" y1="12" x2="21" y2="12" />
         </svg>
-        <span className="partitionTabbarLabel">{ROUTE_LABELS.PARTITION_FEED}</span>
+        <span>{ROUTE_LABELS.PARTITION_FEED}</span>
       </button>
       <button
         type="button"
-        className={`partitionTabbarItem ${isCreate ? "partitionTabbarItemActive" : ""}`}
+        className={`partitionNavItem ${isCreate ? "partitionNavItemActive" : ""}`}
         onClick={goToCreate}
         disabled={!isAuthenticated}
       >
-        <svg className="partitionTabbarIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+        <svg className="partitionNavIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
           <rect x="3" y="4" width="18" height="16" rx="2" />
           <line x1="12" y1="9" x2="12" y2="15" />
           <line x1="9" y1="12" x2="15" y2="12" />
         </svg>
-        <span className="partitionTabbarLabel">{ROUTE_LABELS.PARTITION_CREATE}</span>
+        <span>{ROUTE_LABELS.PARTITION_CREATE}</span>
       </button>
       <button
         type="button"
-        className={`partitionTabbarItem ${isTiles ? "partitionTabbarItemActive" : ""}`}
+        className={`partitionNavItem ${isTiles ? "partitionNavItemActive" : ""}`}
         onClick={goToTiles}
       >
-        <svg className="partitionTabbarIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+        <svg className="partitionNavIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
           <rect x="3" y="4" width="18" height="16" rx="2" />
           <line x1="12" y1="4" x2="12" y2="20" />
           <line x1="3" y1="12" x2="21" y2="12" />
         </svg>
-        <span className="partitionTabbarLabel">{ROUTE_LABELS.PARTITION_TILES}</span>
+        <span>{ROUTE_LABELS.PARTITION_TILES}</span>
       </button>
       {isAuthenticated ? (
-        <button type="button" className="partitionTabbarItem" onClick={handleLogout} disabled={logoutLoading}>
-          <svg className="partitionTabbarIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+        <button type="button" className="partitionNavItem" onClick={handleLogout} disabled={logoutLoading}>
+          <svg className="partitionNavIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
             <path d="M10 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h5" />
             <polyline points="16 8 20 12 16 16" />
             <line x1="9" y1="12" x2="20" y2="12" />
           </svg>
-          <span className="partitionTabbarLabel">{PARTITION_LOGOUT_LABEL}</span>
+          <span>{PARTITION_LOGOUT_LABEL}</span>
         </button>
       ) : (
         <button
           type="button"
-          className={`partitionTabbarItem ${isLogin ? "partitionTabbarItemActive" : ""}`}
+          className={`partitionNavItem ${isLogin ? "partitionNavItemActive" : ""}`}
           onClick={goToLogin}
         >
-          <svg className="partitionTabbarIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+          <svg className="partitionNavIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
             <path d="M14 4h5a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-5" />
             <polyline points="10 8 14 12 10 16" />
             <line x1="3" y1="12" x2="14" y2="12" />
           </svg>
-          <span className="partitionTabbarLabel">{ROUTE_LABELS.PARTITION_LOGIN}</span>
+          <span>{ROUTE_LABELS.PARTITION_LOGIN}</span>
         </button>
       )}
+    </>
+  );
+
+  return (
+    <nav className="partitionNav" aria-label="Разделы">
+      <div className="partitionNavBar">
+        <div className="partitionNavLinks">{renderItems()}</div>
+        <div
+          className={`partitionNavBurger ${menuOpen ? "active" : ""}`}
+          role="button"
+          tabIndex={0}
+          aria-label="Меню"
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          <div className="partitionNavBurgerTarget" />
+          {/* Клик по пункту не всплывает к бургеру и не закрывает меню */}
+          <div className="partitionNavMenu" onClick={(event) => event.stopPropagation()}>
+            {renderItems()}
+          </div>
+        </div>
+      </div>
     </nav>
   );
 };

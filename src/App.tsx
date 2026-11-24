@@ -6,10 +6,13 @@ import { PartitionFeedPage } from "./pages/PartitionFeedPage";
 import { PartitionLoginPage } from "./pages/PartitionLoginPage";
 import { PartitionCreatePage } from "./pages/PartitionCreatePage";
 
+// base из vite.config.ts, без завершающего слэша: локально и на Pages один и тот же префикс
+const partitionBasename = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 // Страницы приложения внутри общей оболочки с нижним меню
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={partitionBasename}>
       <Routes>
         <Route element={<AppLayout />}>
           <Route path={ROUTES.PARTITION_TILES} element={<PartitionTilesPage />} />

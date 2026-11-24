@@ -1,9 +1,10 @@
+import { partitionPublicUrl } from "./partitionDefaults";
 import type { PartitionSystem } from "./partitionTypes";
 
 // Mock-коллекция конструкций перегородок: те же конструкции, что в ЛР-2
 // (названия, тип, индекс Rw, описания, лайки, фото и видео из MinIO, бакет partitions).
 // В ЛР-5 карточки берутся только отсюда, без веб-сервиса, БД и MinIO:
-// фото и видео скопированы в проект (public/partition-media);
+// фото и видео скопированы в проект (public/partition-media) и отдаются с префиксом base;
 // null — будет показано изображение или видео по умолчанию
 export const PARTITION_SYSTEMS_MOCK: PartitionSystem[] = [
   {
@@ -13,8 +14,8 @@ export const PARTITION_SYSTEMS_MOCK: PartitionSystem[] = [
       "Каркасная перегородка на одинарном металлическом каркасе с заполнением звукопоглощающим материалом. Применяется для межкомнатных перегородок в жилых и офисных помещениях.",
     partitionThicknessMm: 125,
     soundIndexRw: 52,
-    partitionPhotoUrl: "/partition-media/bazovaya-1.png",
-    partitionVideoUrl: "/partition-media/bazovaya-1.mp4",
+    partitionPhotoUrl: partitionPublicUrl("partition-media/bazovaya-1.png"),
+    partitionVideoUrl: partitionPublicUrl("partition-media/bazovaya-1.mp4"),
     partitionLikesCount: 3,
     partitionIsLiked: 0,
     partitionIsMine: 0,
@@ -33,8 +34,8 @@ export const PARTITION_SYSTEMS_MOCK: PartitionSystem[] = [
       "Каркасная перегородка с усиленной обшивкой из звукоизоляционных панелей. Обеспечивает повышенную защиту от воздушного шума между помещениями.",
     partitionThicknessMm: 150,
     soundIndexRw: 60,
-    partitionPhotoUrl: "/partition-media/standart-m1.png",
-    partitionVideoUrl: "/partition-media/standart-m1.mp4",
+    partitionPhotoUrl: partitionPublicUrl("partition-media/standart-m1.png"),
+    partitionVideoUrl: partitionPublicUrl("partition-media/standart-m1.mp4"),
     partitionLikesCount: 2,
     partitionIsLiked: 0,
     partitionIsMine: 0,
@@ -66,8 +67,8 @@ export const PARTITION_SYSTEMS_MOCK: PartitionSystem[] = [
       "Перегородка на двойном разнесённом каркасе увеличенной толщины. Применяется в студиях звукозаписи и переговорных комнатах повышенной приватности.",
     partitionThicknessMm: 250,
     soundIndexRw: 74,
-    partitionPhotoUrl: "/partition-media/profi-m1.png",
-    partitionVideoUrl: "/partition-media/profi-m1.mp4",
+    partitionPhotoUrl: partitionPublicUrl("partition-media/profi-m1.png"),
+    partitionVideoUrl: partitionPublicUrl("partition-media/profi-m1.mp4"),
     partitionLikesCount: 3,
     partitionIsLiked: 0,
     partitionIsMine: 0,
